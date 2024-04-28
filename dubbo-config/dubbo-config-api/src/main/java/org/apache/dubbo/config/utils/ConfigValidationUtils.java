@@ -242,6 +242,7 @@ public class ConfigValidationUtils {
             if (provider) {
                 // for registries enabled service discovery, automatically register interface compatible addresses.
                 String registerMode;
+                // 如果是应用级别注册
                 if (SERVICE_REGISTRY_PROTOCOL.equals(registryURL.getProtocol())) {
                     registerMode = registryURL.getParameter(
                             REGISTER_MODE_KEY,
@@ -250,9 +251,12 @@ public class ConfigValidationUtils {
                     if (!isValidRegisterMode(registerMode)) {
                         registerMode = DEFAULT_REGISTER_MODE_INSTANCE;
                     }
+                    // 添加应用级别注册url
                     result.add(registryURL);
+                    // 开启双注册
                     if (DEFAULT_REGISTER_MODE_ALL.equalsIgnoreCase(registerMode)
                             && registryNotExists(registryURL, registryList, REGISTRY_PROTOCOL)) {
+                        // 添加接口级别注册url
                         URL interfaceCompatibleRegistryURL = URLBuilder.from(registryURL)
                                 .setProtocol(REGISTRY_PROTOCOL)
                                 .removeParameter(REGISTRY_TYPE_KEY)
@@ -260,6 +264,7 @@ public class ConfigValidationUtils {
                         result.add(interfaceCompatibleRegistryURL);
                     }
                 } else {
+                    // 接口级别注册
                     registerMode = registryURL.getParameter(
                             REGISTER_MODE_KEY,
                             ConfigurationUtils.getCachedDynamicProperty(
@@ -267,6 +272,7 @@ public class ConfigValidationUtils {
                     if (!isValidRegisterMode(registerMode)) {
                         registerMode = DEFAULT_REGISTER_MODE_INTERFACE;
                     }
+
                     if ((DEFAULT_REGISTER_MODE_INSTANCE.equalsIgnoreCase(registerMode)
                                     || DEFAULT_REGISTER_MODE_ALL.equalsIgnoreCase(registerMode))
                             && registryNotExists(registryURL, registryList, SERVICE_REGISTRY_PROTOCOL)) {

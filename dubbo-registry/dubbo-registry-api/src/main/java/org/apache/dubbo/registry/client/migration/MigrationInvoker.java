@@ -455,6 +455,7 @@ public class MigrationInvoker<T> implements MigrationClusterInvoker<T> {
             if (serviceDiscoveryInvoker != null) {
                 serviceDiscoveryInvoker.destroy();
             }
+            // 创建应用级别invoker
             serviceDiscoveryInvoker = registryProtocol.getServiceDiscoveryInvoker(cluster, registry, type, url);
         }
         setListener(serviceDiscoveryInvoker, () -> {

@@ -58,6 +58,15 @@ public class InterfaceCompatibleRegistryProtocol extends RegistryProtocol {
         return doCreateInvoker(directory, cluster, registry, type);
     }
 
+    /**
+     * 获取接口注册url对应的应用注册的ServiceDiscoveryRegistry
+     * @param cluster
+     * @param registry
+     * @param type
+     * @param url
+     * @return
+     * @param <T>
+     */
     @Override
     public <T> ClusterInvoker<T> getServiceDiscoveryInvoker(
             Cluster cluster, Registry registry, Class<T> type, URL url) {

@@ -24,7 +24,7 @@ public interface RegistryConstants {
 
     String REGISTRY_CLUSTER_TYPE_KEY = "registry-cluster-type";
 
-    String REGISTRY_PROTOCOL = "registry";
+    String REGISTRY_PROTOCOL = "registry"; // 接口级别注册协议
 
     String DYNAMIC_KEY = "dynamic";
 
@@ -92,7 +92,7 @@ public interface RegistryConstants {
      *
      * @since 2.7.5
      */
-    String SERVICE_REGISTRY_PROTOCOL = "service-discovery-registry";
+    String SERVICE_REGISTRY_PROTOCOL = "service-discovery-registry"; // 应用级别注册协议
 
     /**
      * Specify registry level services consumer needs to subscribe to, multiple values should be separated using ",".
